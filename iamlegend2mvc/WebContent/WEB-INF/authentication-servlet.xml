@@ -21,7 +21,7 @@
     </bean>
     
      <bean id="myEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-         <property name="persistenceUnitName" value="iamlegend2" />
+         <property name="persistenceUnitName" value="ZombieHoard" />
      </bean>
      
 
