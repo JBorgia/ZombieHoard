@@ -1,4 +1,4 @@
-# I Am Legend 2.0
+# ZombieHoard
 2nd Group Project in Quad 2 created 18 November 2016
 
 INTRODUCTION:
