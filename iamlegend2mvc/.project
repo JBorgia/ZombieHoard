@@ -3,7 +3,7 @@
 	<name>ZombieHoardMVC</name>
 	<comment></comment>
 	<projects>
-		<project>iamlegend2jpa</project>
+		<project>ZombieHoardJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
