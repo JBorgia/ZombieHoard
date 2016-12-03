@@ -26,34 +26,32 @@ import entities.Customer;
 import entities.UserAccessLevel;
 
 @Controller
-@SessionAttributes({"cart", "customer"})
+@SessionAttributes({ "cart", "customer" })
 public class LoginController {
 	@Autowired
 	private ZombieDAO zombieDAO;
-	
-	
+
 	@Autowired
 	public AuthenticationDAO customers;
-	
-//	@Autowired
-//	public Cart Cart;
-	
+
+	// @Autowired
+	// public Cart Cart;
+
 	@ModelAttribute("customer")
-	public Customer verify(){
+	public Customer verify() {
 		return new Customer();
 	}
-	
+
 	@ModelAttribute("cart")
-	public Cart initCart(){
+	public Cart initCart() {
 		return new Cart();
 	}
-	
-	
-	  @RequestMapping("refresh.do")
-	  public ModelAndView refresh(){
-		  //System.out.println("In hanger refresh");
-		  ModelAndView mv = new ModelAndView();
-			mv.addObject("customer", new Customer());
+
+	@RequestMapping("refresh.do")
+	public ModelAndView refresh() {
+		// System.out.println("In hanger refresh");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("customer", new Customer());
 		mv.setViewName("login.jsp");
 		return mv;
 	}
@@ -187,4 +185,5 @@ public class LoginController {
 			 mv.setViewName("profile.jsp");
 			 return mv;
 		 }
+
 }

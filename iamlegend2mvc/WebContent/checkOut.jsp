@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ZombieHoard: Shopping Cart</title>
+<title>ZombieHoard: Check Out</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -67,46 +67,8 @@
 		<div class="row">
 
 			<div class="col-md-3">
-				<p class="lead">The Hoard: Shopping Cart</p>
-				<div class="list-group">
-					<a href="ViewWeapons.do" class="list-group-item">Weapons</a> <a
-						href="ViewAmmo.do" class="list-group-item">Ammo</a> <a
-						href="ViewOptics.do" class="list-group-item">Sights & Scopes</a> <a
-						href="ViewNutrition.do" class="list-group-item">Food</a> <a
-						href="ViewEquipment.do" class="list-group-item">Equipment</a>
+				
 				</div>
-				<p class="lead">Search</p>
-				<div class="list-group">
-					<form:form method="POST" action="ItemSearch.do"
-						modelAttribute="inventoryItem">
-						<form:input path="name" />
-						<div class="list-group-search-button">
-							<form:label path="category">Category:</form:label>
-						</div>
-						<div class="list-group-radio">
-							<form:radiobutton path="category" value="weapon" />
-							Weapon
-						</div>
-						<div class="list-group-radio">
-							<form:radiobutton path="category" value="ammo" />
-							Ammo
-						</div>
-						<div class="list-group-radio">
-							<form:radiobutton path="category" value="optic" />
-							Sights & Scopes
-						</div>
-						<div class="list-group-radio">
-							<form:radiobutton path="category" value="nutrition" />
-							Food
-						</div>
-						<div class="list-group-radio">
-							<form:radiobutton path="category" value="equipment" />
-							Equipment
-						</div>
-						<div class="list-group-search-button">
-							<input type="submit" value="Submit" />
-						</div>
-					</form:form>
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -199,7 +161,8 @@
 												value="Continue Shopping" />
 										</form:form>
 									</span> <br> <br> 
-									<span class="right-align"> <form:form method="GET" action="checkOut.do" >
+									<span class="right-align"> <form:form
+											method="GET" action="DeleteItem.do">
 											<input style="width: 150px" type="submit"
 												value="Proceed to Checkout" />
 										</form:form>
