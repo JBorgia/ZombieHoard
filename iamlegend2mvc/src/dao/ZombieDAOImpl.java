@@ -61,7 +61,7 @@ public class ZombieDAOImpl implements ZombieDAO {
 	public List<InventoryItem> getInvetoryItemsBySearch(InventoryItem inventoryItem) {
 		System.out.println(inventoryItem);
 		ArrayList<String> sql = filter.makeSQLbyInventoryItem(inventoryItem);
-		Query query = em.createQuery(sql.get(0));
+		Query query =  em.createQuery(sql.get(0));
 		for (int i = 1; i < sql.size(); i++) {
 			query.setParameter(i, sql.get(i));
 		}

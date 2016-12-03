@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -13,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>I Am Legend II: Product Information</title>
+<title>ZombieHoard: Product Information</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -66,7 +65,7 @@
 		<div class="row">
 
 			<div class="col-md-3">
-				<p class="lead">IAL2: Product Info</p>
+				<p class="lead">The Hoard: Product Info</p>
 				<div class="list-group">
 					<a href="ViewWeapons.do" class="list-group-item">Weapons</a> <a
 						href="ViewAmmo.do" class="list-group-item">Ammo</a> <a

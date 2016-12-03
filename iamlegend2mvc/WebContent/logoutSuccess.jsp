@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>You have sucessfully logged out</h1>
+<h1>You have successfully logged out</h1>
 </body>
 </html>

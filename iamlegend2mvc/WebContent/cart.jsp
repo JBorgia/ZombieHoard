@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>I Am Legend II: Shopping Cart</title>
+<title>ZombieHoard: Shopping Cart</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@
 		<div class="row">
 
 			<div class="col-md-3">
-				<p class="lead">IAL2: Shopping Cart</p>
+				<p class="lead">The Hoard: Shopping Cart</p>
 				<div class="list-group">
 					<a href="ViewWeapons.do" class="list-group-item">Weapons</a> <a
 						href="ViewAmmo.do" class="list-group-item">Ammo</a> <a

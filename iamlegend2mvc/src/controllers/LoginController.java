@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,16 +19,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import entities.Customer;
-import entities.User;
-import entities.UserAccessLevel;
+import dao.ZombieDAO;
 import data.AuthenticationDAO;
 import entities.Cart;
+import entities.Customer;
+import entities.UserAccessLevel;
 
 @Controller
 @SessionAttributes({"cart", "customer"})
 public class LoginController {
+	@Autowired
+	private ZombieDAO zombieDAO;
 	
 	
 	@Autowired
@@ -40,14 +40,12 @@ public class LoginController {
 	
 	@ModelAttribute("customer")
 	public Customer verify(){
-		Customer customer = new Customer();
-		return customer;
+		return new Customer();
 	}
 	
 	@ModelAttribute("cart")
 	public Cart initCart(){
-		Cart cart = new Cart();
-		return cart;
+		return new Cart();
 	}
 	
 	
@@ -55,8 +53,7 @@ public class LoginController {
 	  public ModelAndView refresh(){
 		  //System.out.println("In hanger refresh");
 		  ModelAndView mv = new ModelAndView();
-			Customer u = new Customer();
-			mv.addObject("customer", u);
+			mv.addObject("customer", new Customer());
 		mv.setViewName("login.jsp");
 		return mv;
 	}
@@ -75,11 +72,11 @@ public class LoginController {
 	    if (errors.getErrorCount() != 0 || validEmail == null || validPassword == null || !validEmail  || !validPassword) {
 	      // If there are any errors, return the login form.
 	    	//if(!validEmail) mv.addObject("email", "Invalid email: \"" + customer.getEmail() + "\" entered.");
-	    	if( (validEmail == null || !validEmail) && (validPassword !=null && validPassword)) errors.rejectValue("email", "login.combination");
-	    	else if(validEmail == null || !validEmail) errors.rejectValue("email", "login.email");
+	    	if( (validEmail == null || !validEmail) && (validPassword !=null && validPassword)) errors.rejectValue("email", "logincombination");
+	    	else if(validEmail == null || !validEmail) errors.rejectValue("email", "loginemail");
 	    	
-	    	if( (validPassword == null || !validPassword) && (validEmail !=null && validEmail)) errors.rejectValue("password", "login.combination");
-	    	else if(validPassword == null || !validPassword) errors.rejectValue("password", "login.password");
+	    	if( (validPassword == null || !validPassword) && (validEmail !=null && validEmail)) errors.rejectValue("password", "logincombination");
+	    	else if(validPassword == null || !validPassword) errors.rejectValue("password", "loginpassword");
 	    	//if(!validPassword) mv.addObject("password", "Invalid password entered.");
 	      mv.setViewName("login.jsp");
 	      return mv;

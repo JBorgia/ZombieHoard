@@ -29,9 +29,9 @@ public class Customer extends User {
 	private Integer accountNumber;
 	@Column(name = "account_balance")
 	private Float accountBalance;
-	@Pattern(regexp="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$", message="Pattern.customer.email")
+//	@Pattern(regexp="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$", message="Pattern.customer.email")
 	private String email;
-	@Pattern(regexp="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[\\w\\d]{6,12}$", message="Pattern.customer.password")
+//	@Pattern(regexp="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[\\w\\d]{6,12}$", message="Pattern.customer.password")
 	private String password;
 	@Size(min=2, max=30, message="Size.customer.firstName")
 	@Column(name = "first_name")

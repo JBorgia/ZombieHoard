@@ -197,27 +197,7 @@
 			</tfoot>
 		</table>
 
-		
-		<fieldset>
-		<legend>Geographical Information:</legend>
-			<table>
-				<thead>
-					<tr>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="geo" items="${customers.evaluateZipcode(sessionScope.customer.zipcode)}">
-						<tr>
-							<td>${geo}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-				<tfoot></tfoot>
-			</table>
-		</fieldset>
-
-			<form action="shop.do" method="POST"><input type="submit" value="Shop"></form>
+			<form action="LandingPage.do" method="GET"><input type="submit" value="Shop"></form>
 			<form action="logout.do" method="POST"><input type="submit" value="logout"></form>
 
 </body>

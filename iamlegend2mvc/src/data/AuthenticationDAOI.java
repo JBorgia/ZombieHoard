@@ -1,13 +1,10 @@
 package data;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -20,14 +17,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import entities.User;
-import entities.UserAccessLevel;
-import entities.Cart;
-import entities.Customer;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import entities.Customer;
+import entities.UserAccessLevel;
 
 @Transactional
 public class AuthenticationDAOI implements AuthenticationDAO{
