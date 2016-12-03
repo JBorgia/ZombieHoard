@@ -181,4 +181,12 @@ public class ShopController {
 		return mv;
 	}
 
+	@RequestMapping(path = "checkOut.do", method = RequestMethod.GET)
+	public ModelAndView checkOutPage() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("inventoryItem", zombieDAO.fetchCart());
+		mv.setViewName("checkOut.jsp");
+		return mv;
+	}
+
 }

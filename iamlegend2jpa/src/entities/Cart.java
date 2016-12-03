@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+
 @Entity
 public class Cart {
 
@@ -39,6 +40,7 @@ public class Cart {
 	// "cart_id"), inverseJoinColumns = @JoinColumn(name = "inventory_item_id"))
 	// List<InventoryItem> inventoryItems;
 
+	
 	public Double getTotalCost() {
 		calcTotalCost();
 		return totalCost;
