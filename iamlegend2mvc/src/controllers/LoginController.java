@@ -72,11 +72,11 @@ public class LoginController {
 	    if (errors.getErrorCount() != 0 || validEmail == null || validPassword == null || !validEmail  || !validPassword) {
 	      // If there are any errors, return the login form.
 	    	//if(!validEmail) mv.addObject("email", "Invalid email: \"" + customer.getEmail() + "\" entered.");
-	    	if( (validEmail == null || !validEmail) && (validPassword !=null && validPassword)) errors.rejectValue("email", "logincombination");
-	    	else if(validEmail == null || !validEmail) errors.rejectValue("email", "loginemail");
+	    	if( (validEmail == null || !validEmail) && (validPassword !=null && validPassword)) errors.rejectValue("email", "login.combination");
+	    	else if(validEmail == null || !validEmail) errors.rejectValue("email", "login.email");
 	    	
-	    	if( (validPassword == null || !validPassword) && (validEmail !=null && validEmail)) errors.rejectValue("password", "logincombination");
-	    	else if(validPassword == null || !validPassword) errors.rejectValue("password", "loginpassword");
+	    	if( (validPassword == null || !validPassword) && (validEmail !=null && validEmail)) errors.rejectValue("password", "login.combination");
+	    	else if(validPassword == null || !validPassword) errors.rejectValue("password", "login.password");
 	    	//if(!validPassword) mv.addObject("password", "Invalid password entered.");
 	      mv.setViewName("login.jsp");
 	      return mv;

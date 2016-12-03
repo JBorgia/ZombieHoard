@@ -107,3 +107,18 @@ footer {
 input.cart-button{
     width: 20em;
 }
+
+.side-by-side {
+    display: inline-block;
+    width: 150px;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.wrapper {
+    white-space: nowrap;
+    padding:5px;
+    padding-left:7px;
+    height:37px;
+    width: 425px;
+    overflow-x: auto;
+}

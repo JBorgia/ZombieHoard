@@ -43,10 +43,10 @@
 	</nav>
 	<!-- <img src="images/background.jpg" /> -->
 	<div class="container-fluid">
-		<div class="row login-row1">
+		<div >
 			<div class="col-md-3 left"></div>
 			<div class="col-md-6">
-				<div class="form-group">
+				<div  style="padding:80px">
 					<form:form action="login.do" method="POST"
 						modelAttribute="customer" class="form-horizontal">
 						<table>
@@ -70,7 +70,7 @@
 									</div></td>
 							</tr>
 						</table>
-						<div style="text-align: bottom">
+						<div style="text-align: bottom"><br>
 							<form:errors path="password" />
 							<br>
 							<form:errors path="email" />
