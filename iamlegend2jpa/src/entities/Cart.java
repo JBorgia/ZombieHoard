@@ -14,14 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Cart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private boolean active;
+	private boolean active = true;
 	@Column(name = "total_price")
 	private Double totalCost;
 	@Column(name = "total_weight")
@@ -40,7 +39,6 @@ public class Cart {
 	// "cart_id"), inverseJoinColumns = @JoinColumn(name = "inventory_item_id"))
 	// List<InventoryItem> inventoryItems;
 
-	
 	public Double getTotalCost() {
 		calcTotalCost();
 		return totalCost;
@@ -83,9 +81,11 @@ public class Cart {
 
 	public List<InventoryItem> getInventoryItems() {
 		List<InventoryItem> inventoryItems = new ArrayList<>();
-		for (CartItems cartItem : cartItems) {
-			System.out.println(cartItem);
-			inventoryItems.add(cartItem.getInventoryItem());
+		if (cartItems!=null) {
+			for (CartItems cartItem : cartItems) {
+				System.out.println(cartItem);
+				inventoryItems.add(cartItem.getInventoryItem());
+			}
 		}
 		return inventoryItems;
 	}
@@ -179,7 +179,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", active=" + active + ", customerAccountNumber=" + ", survivalScore=" + survivalScore
-				+ "]";
+		return "Cart [id=" + id + ", active=" + active + "]";
 	}
+
 }

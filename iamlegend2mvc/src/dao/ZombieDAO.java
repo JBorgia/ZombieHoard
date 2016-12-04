@@ -13,4 +13,5 @@ public interface ZombieDAO {
 	public Cart fetchCart();
 	public void updateItemQuantity(int id, int quantity);
 	public void removeFromCart(int id);
+	public void persistCart();
 }

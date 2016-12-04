@@ -17,7 +17,7 @@ import searchfilters.Filter;
 @Transactional
 public class ZombieDAOImpl implements ZombieDAO {
 	Filter filter = new Filter();
-	Cart cart;
+	Cart cart = new Cart();
 
 	@PersistenceContext
 	EntityManager em;
@@ -118,6 +118,9 @@ public class ZombieDAOImpl implements ZombieDAO {
 		if (soldOut) {
 			report += "Sorry, we have no more " + inventoryItem.getName() + "s.";
 		}
+		if(cart.getCustomer()!=null){
+			em.persist(cart);
+		}
 
 		return report;
 	}
@@ -128,6 +131,11 @@ public class ZombieDAOImpl implements ZombieDAO {
 
 	public Cart fetchCart() {
 		return this.cart;
+	}
+	
+	public void persistCart(){
+		System.out.println(cart.getCustomer());
+		em.merge(this.cart);
 	}
 
 }

@@ -446,23 +446,23 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<div class="side-by-side" style="width:100px">
+					<div class="side-by-side" style="width:70px">
 						<form action="logout.do" method="POST">
 							<input type="submit" value="Logout">
 						</form>
 					</div>
-					<div class="side-by-side" style="width:100px">
+					<div class="side-by-side" style="width:59px">
 						<form action="LandingPage.do" method="GET">
 							<input type="submit" value="Shop">
 						</form>
 					</div>
 					<c:if test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
-						<div class="side-by-side" style="width:100px">
+						<div class="side-by-side" style="width:129px">
 							<form action="logout.do" method="POST">
 								<input type="submit" value="Modify Inventory">
 							</form>
 						</div>
-						<div class="side-by-side" style="width:100px">
+						<div class="side-by-side" style="width:130px">
 							<form action="logout.do" method="POST">
 								<input type="submit" value="Modify Users">
 							</form>

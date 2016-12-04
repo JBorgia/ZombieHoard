@@ -79,11 +79,23 @@ public class LoginController {
 	      mv.setViewName("login.jsp");
 	      return mv;
 	    }
+	    Customer cust=customers.getCustomer(customer);
 	    
+	    if(cust.getAccessLevel().equals("ADMIN")){
+	    	mv.setViewName("adminProfile.jsp");
+	    }
+	    else{
+	    	mv.setViewName("profile.jsp");
+	    }
+	    zombieDAO.fetchCart().setCustomer(cust);
+	    System.out.println(customer);
+	    
+	    zombieDAO.persistCart();
+	    System.out.println("After persistCart");
 	    mv.addObject("customers", customers);
-	    mv.addObject("customer", customers.getCustomer(customer));
+	    mv.addObject("customer", cust);
 	    // If no errors, send the customer forward to the profile view.
-	    mv.setViewName("profile.jsp");
+	    System.out.println("THE END");
 	    return mv;
 	  }
 	  

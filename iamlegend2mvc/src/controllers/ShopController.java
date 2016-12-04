@@ -143,10 +143,13 @@ public class ShopController {
 	public ModelAndView viewCart() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("inventoryItem", new InventoryItem());
-		if(zombieDAO.fetchCart()==null){
+		System.out.println("YOU ARE HERE");
+		System.out.println( zombieDAO.fetchCart().getInventoryItems() );
+		if(zombieDAO.fetchCart()==null || zombieDAO.fetchCart().getInventoryItems().isEmpty() ){
 			mv.addObject("cart", "emptyCart");
 			System.out.println("Cart has nothing in it. Set to NONE");
 		}else{
+			System.out.println(zombieDAO.fetchCart());
 			mv.addObject("cart", zombieDAO.fetchCart());
 		}
 		List<InventoryItem> shuffledItems = zombieDAO.getInvetoryItemsBySearch(new InventoryItem());
