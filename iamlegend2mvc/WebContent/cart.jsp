@@ -125,7 +125,12 @@
 									<a href="GetItemInfo.do?id=${cartItem.inventoryItem.id}">
 										<div class="thumbnail">
 											<img src="${cartItem.inventoryItem.imageUrl}"
-												style="height: 100px" alt="">
+												style="
+  display: block;
+  max-width:200px;
+  max-height:95px;
+  width: auto;
+  height: auto;" alt="">
 										</div>
 									</a>
 								</div>
