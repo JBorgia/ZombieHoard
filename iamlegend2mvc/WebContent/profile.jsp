@@ -51,8 +51,14 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
-					<li><a href="refresh.do">Login</a></li>
-					<li><a href="profile.jsp">My Account</a></li>
+					<c:choose>
+						<c:when test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
+							<li><a href="refresh.do">Login</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="profile.jsp">My Account</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li><a href="ViewCart.do">View Cart</a></li>
 				</ul>
 			</div>
@@ -88,7 +94,10 @@
 							<div>Account Balance:</div>
 						</div>
 						<div class="side-by-side" style="text-align: right; width: 245px">
-							<div>${sessionScope.customer.accountBalance}</div>
+							<div>
+								<fmt:formatNumber
+									value="${sessionScope.customer.accountBalance}" type="currency" />
+							</div>
 						</div>
 					</div>
 					<div class="wrapper list-group-item">
@@ -329,7 +338,7 @@
 								<div class="side-by-side" style="text-align: right">
 									<div>
 										<fmt:formatNumber value="${sessionScope.customer.age}"
-											maxIntegerDigits="0" type="number" />
+											type="number" />
 									</div>
 								</div>
 								<div class="side-by-side" style="text-align: right">
@@ -428,41 +437,40 @@
 
 
 					<div class="wrapper list-group-item">
-						<div class="side-by-side">
+						<div class="side-by-side" style="width: 80px">
 							<div>Access Level:</div>
 						</div>
 						<c:choose>
 							<c:when test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
-								<div class="side-by-side"
-									style="width: 70px; padding-left: 15px">
+								<div class="side-by-side" style="text-align: right">
 									<a href="admin.do?">${sessionScope.customer.accessLevel}</a>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side">
+								<div class="side-by-side" style="text-align: right">
 									${sessionScope.customer.accessLevel}</div>
 							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
 				<div class="wrapper">
-					<div class="side-by-side" style="width:70px">
+					<div class="side-by-side" style="width: 70px">
 						<form action="logout.do" method="POST">
 							<input type="submit" value="Logout">
 						</form>
 					</div>
-					<div class="side-by-side" style="width:59px">
+					<div class="side-by-side" style="width: 59px">
 						<form action="LandingPage.do" method="GET">
 							<input type="submit" value="Shop">
 						</form>
 					</div>
 					<c:if test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
-						<div class="side-by-side" style="width:129px">
+						<div class="side-by-side" style="width: 129px">
 							<form action="logout.do" method="POST">
 								<input type="submit" value="Modify Inventory">
 							</form>
 						</div>
-						<div class="side-by-side" style="width:130px">
+						<div class="side-by-side" style="width: 130px">
 							<form action="logout.do" method="POST">
 								<input type="submit" value="Modify Users">
 							</form>

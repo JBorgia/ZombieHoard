@@ -119,7 +119,7 @@ public class ZombieDAOImpl implements ZombieDAO {
 			report += "Sorry, we have no more " + inventoryItem.getName() + "s.";
 		}
 		if(cart.getCustomer()!=null){
-			em.persist(cart);
+			em.merge(cart);
 		}
 
 		return report;

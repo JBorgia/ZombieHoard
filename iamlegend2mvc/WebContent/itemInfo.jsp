@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -49,8 +50,14 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
-					<li><a href="refresh.do">Login</a></li>
-					<li><a href="profile.jsp">My Account</a></li>
+					<c:choose>
+						<c:when test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
+							<li><a href="refresh.do">Login</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="profile.jsp">My Account</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li><a href="ViewCart.do">View Cart</a></li>
 				</ul>
 			</div>
@@ -134,7 +141,8 @@
 									<p>${inventoryItem.description}</p>
 									<p>
 										<fmt:formatNumber value="${inventoryItem.weight}"
-											maxIntegerDigits="3" type="number" /> lbs.
+											maxIntegerDigits="3" type="number" />
+										lbs.
 									</p>
 								</div>
 								<div class="right-align">
@@ -142,7 +150,7 @@
 										<form:form method="POST" action="AddItemToCart.do"
 											modelAttribute="inventoryItem">
 											<div class="right-align">
-												<input name="quantity" type="number" />
+												<input name="quantity" type="number"  min="1" value="1" />
 											</div>
 											<span class="right-align">
 												<div class="left-align">
@@ -225,29 +233,31 @@
 					</div>
 				</div>
 			</div>
-			<!-- /.container -->
+		</div>
+	</div>
+	<!-- /.container -->
 
-			<div class="container">
+	<div class="container">
 
-				<hr>
+		<hr>
 
-				<!-- Footer -->
-				<footer>
-					<div class="row">
-						<div class="col-lg-12">
-							<p>Copyright &copy; Your Website 2014</p>
-						</div>
-					</div>
-				</footer>
-
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
 			</div>
-			<!-- /.container -->
+		</footer>
 
-			<!-- jQuery -->
-			<script src="js/jquery.js"></script>
+	</div>
+	<!-- /.container -->
 
-			<!-- Bootstrap Core JavaScript -->
-			<script src="js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

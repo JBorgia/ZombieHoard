@@ -51,8 +51,14 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
-					<li><a href="refresh.do">Login</a></li>
-					<li><a href="profile.jsp">My Account</a></li>
+					<c:choose>
+						<c:when test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
+							<li><a href="refresh.do">Login</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="profile.jsp">My Account</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li><a href="ViewCart.do">View Cart</a></li>
 				</ul>
 			</div>
@@ -159,7 +165,7 @@
 												action="UpdateQuantity.do" modelAttribute="cartItem">
 												Quantity: 
 												<input style="width: 40px; height: 25px"
-													value="${cartItem.quantity}" type="number" name="quantity" />
+													value="${cartItem.quantity}" type="number" name="quantity"  min="1"/>
 												<input value="${cartLoop.index}" type="hidden" name="id" />
 												<input style="width: 70px" type="submit" value="Update" />
 											</form:form>
