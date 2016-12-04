@@ -32,7 +32,7 @@
 </head>
 
 <body>
-<!-- container -->
+	<!-- container -->
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -66,13 +66,9 @@
 
 		<div class="row">
 
-			<div class="col-md-3">
-				
-				</div>
-				</div>
-			</div>
-			<div class="col-md-9">
-				<h2>Cart Contents</h2><br>
+			<div class="col-md-12">
+				<h2>Cart Contents</h2>
+				<br>
 				<c:if test="${cart == 'emptyCart'}">
 					<div class="confirmation">
 						<h3>Your cart is empty</h3>
@@ -139,8 +135,9 @@
 
 						<div class="col-md-12">
 							<div class="col-sm-4 col-lg-4 col-md-4"></div>
-							<div class="col-sm-4 col-lg-4 col-md-4" style="background-color:#eaeae1; height:85px">
-								<div style="padding-top:8px">
+							<div class="col-sm-4 col-lg-4 col-md-4"
+								style="background-color: #eaeae1; height: 85px">
+								<div style="padding-top: 8px">
 									<h4>
 										Total Weight:
 										<fmt:formatNumber value="${cart.totalWeight}"
@@ -153,15 +150,15 @@
 									</h4>
 								</div>
 							</div>
-							<div class="col-sm-4 col-lg-4 col-md-4"  style="background-color:#dadbc0; height:85px">
+							<div class="col-sm-4 col-lg-4 col-md-4"
+								style="background-color: #dadbc0; height: 85px">
 								<div style="margin-top: 10px">
-									<span class="right-align"> <form:form method="GET" action="LandingPage.do"
-													modelAttribute="inventoryItem">
+									<span class="right-align"> <form:form method="GET"
+											action="LandingPage.do" modelAttribute="inventoryItem">
 											<input style="width: 150px" type="submit"
 												value="Continue Shopping" />
 										</form:form>
-									</span> <br> <br> 
-									<span class="right-align"> <form:form
+									</span> <br> <br> <span class="right-align"> <form:form
 											method="GET" action="DeleteItem.do">
 											<input style="width: 150px" type="submit"
 												value="Proceed to Checkout" />
@@ -235,29 +232,28 @@
 				</div>
 			</div>
 		</div>
-		<!-- /.container -->
+	</div>
+	<div class="container">
 
-		<div class="container">
+		<hr>
 
-			<hr>
-
-			<!-- Footer -->
-			<footer>
-				<div class="row">
-					<div class="col-lg-12">
-						<p>Copyright &copy; Zombie Jesus, 0 AD</p>
-					</div>
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Zombie Jesus, 0 AD</p>
 				</div>
-			</footer>
+			</div>
+		</footer>
 
-		</div>
-		<!-- /.container -->
+	</div>
+	<!-- /.container -->
 
-		<!-- jQuery -->
-		<script src="js/jquery.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
