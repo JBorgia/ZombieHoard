@@ -1,217 +1,527 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin Profile Page</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>ZombieHoard: Admin Profile Editor</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/shop-homepage.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
-	<h1>Admin Profile Page</h1>
-
-
-			<h2>Account Manager: ${sessionScope.admin.firstName} ${sessionScope.admin.middleName} ${sessionScope.admin.lastName}</h2>
-			<h3>User Account: ${customer.firstName} ${customer.middleName} ${customer.lastName}</h3>
-
-	<table>
-			<thead>
-				<tr>
-					<th>Account Information:</th>
-				<tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>Account Number:</td>
-				<td>${customer.accountNumber}</td>
-			</tr>
-			<tr>
-				<td>Account Balance:</td>
+	<!-- container -->
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="LandingPage.do">Home</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
 					<c:choose>
-						<c:when test="${ sessionScope.admin.accessLevel == 'ADMIN' && sessionScope.admin != customer}">
-							<c:choose>
-								<c:when test="${ update == 10}">
-								<td>
-									<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-									<form:form action="adminUpdate.do?update=10" method="POST" modelAttribute="customer">
+						<c:when
+							test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
+							<li><a href="refresh.do">Login</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="profile.jsp">My Account</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li><a href="ViewCart.do">View Cart</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-lg-6 col-md-6">
+				<p class="lead">Administrator: Profile Editor</p>
+				<div class="list-group">
+
+					<h4>Account Manager: ${sessionScope.admin.firstName}
+						${sessionScope.admin.middleName} ${sessionScope.admin.lastName}</h4>
+					<h5>User Account: ${sessionScope.customer.firstName}
+						${sessionScope.customer.middleName}
+						${sessionScope.customer.lastName}</h5>
+
+					<div>Account Information:</div>
+				</div>
+				<div class="list-group">
+					<div class="wrapper list-group-item">
+						<div class="side-by-side">
+							<div>Account Number:</div>
+						</div>
+						<div class="side-by-side" style="text-align: right; width: 245px">
+							<div>${customer.accountNumber}</div>
+						</div>
+					</div>
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Account Balance:</div>
+						</div>
+						<c:choose>
+							<c:when
+								test="${ sessionScope.admin.accessLevel == 'ADMIN' && sessionScope.admin != customer}">
+
+								<c:choose>
+									<c:when test="${ update == 10}">
+										<div class="side-by-side" style="text-align: right">
+											<form:form action="adminUpdate.do?update=10" method="POST"
+												modelAttribute="customer">
+												<input type="submit" value="Update" />
+												<div>
+													<form:label path="accountBalance" />
+													<form:input path="accountBalance" />
+													<form:errors path="accountBalance" />
+												</div>
+										</div>
+										<div class="side-by-side"
+											style="width: 70px; padding-left: 15px">
+											<div>
+												<input type="submit" value="Update" />
+											</div>
+										</div>
+										</form:form>
+										<div class="side-by-side">
+											<div>
+												<form action="adminProfile.jsp" method="GET">
+													<input type="submit" value="Cancel">
+												</form>
+											</div>
+										</div>
+									</c:when>
+									<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+											<div>${customer.accountBalance}</div>
+										</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+											<a href="update.do?update=-10">Update</a>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:when>
+							<c:otherwise>
+								<td>${customer.accountBalance}</td>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Email:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 1}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=1" method="POST"
+										modelAttribute="customer">
+										<div>
+											<form:label path="email" />
+											<form:input path="email" />
+										</div>
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
 										<input type="submit" value="Update" />
-										<form:label path="accountBalance" />
-										<form:input path="accountBalance" />
-										<form:errors path="accountBalance" />
-									</form:form></td>
-								</c:when>
-								<c:otherwise><td> ${customer.accountBalance}</td><td> <a href="adminUpdate.do?update=-10">Update</a></td> </c:otherwise>
-							</c:choose>
-						</c:when>
-						<c:otherwise><td> ${customer.accountBalance}</td> </c:otherwise>
-					</c:choose>
-			</tr>
-			<tr>
-				<td>Email:</td>
-					<c:choose>
-						<c:when test="${ update == 1}">
-						<td>	
-								<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-								<form:form action="adminUpdate.do?update=1" method="POST" modelAttribute="customer">
-								<input type="submit" value="Update"/>
-								<form:label path="email" />
-								<form:input path="email" />
-								<form:errors path="email" />
-							</form:form>
-						</td>
-						</c:when>
-						<c:otherwise><td> ${customer.email}</td><td> <a href="adminUpdate.do?update=-1">Update</a></td> </c:otherwise>
-					</c:choose>
-			</tr>
-			<tr>
-				<td>Password:</td>
-					<c:choose>
-						<c:when test="${ update == 2}">
-						<td>
-							<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-							<form:form action="adminUpdate.do?update=2" method="POST" modelAttribute="customer">
-								<input type="submit" value="Update"/>
-								<form:label path="password" />
-								<form:input path="password" />
-								<form:errors path="password" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> **************</td><td> <a href="adminUpdate.do?update=-2">Update</a> </td></c:otherwise>
-				</c:choose>
-			</tr>
-			<tr>
-				<td>First Name:</td>
-					<c:choose>
-						<c:when test="${ update == 3}">
-						<td>
-							<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-							<form:form action="adminUpdate.do?update=3" method="POST" modelAttribute="customer">
-								<input type="submit" value="Update"/>
-								<form:label path="firstName" />
-								<form:input path="firstName" />
-								<form:errors path="firstName" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> ${customer.firstName}</td><td> <a href="adminUpdate.do?update=-3">Update</a></td> </c:otherwise>
-					</c:choose>
-			</tr>
-   			<tr>
-   				<td>Middle Name:</td>
-					<c:choose>
-						<c:when test="${not empty customer.middleName || update != -4}">
-							<c:choose>
-								<c:when test="${ update == 4}">
-									<td>
-										<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-										<form:form action="adminUpdate.do?update=4" method="POST" modelAttribute="customer">
-											<input type="submit" value="Update"/>
-											<form:label path="middleName" />
-											<form:input path="middleName" />
-											<form:errors path="middleName" />
-									</form:form></td>
-								</c:when>
-								<c:otherwise><td> ${customer.middleName}</td><td> <a href="adminUpdate.do?update=-4">Update</a></td> </c:otherwise>
-							</c:choose>
-						</c:when>
-						<c:otherwise><td><a href="adminUpdate.do?update=-4">Update</a></td> </c:otherwise>
-					</c:choose>
-			</tr>
-			<tr>
-				<td>Last Name:</td>
-					<c:choose>
-						<c:when test="${ update == 5}">
-							<td>
-								<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-								<form:form action="adminUpdate.do?update=5" method="POST" modelAttribute="customer">
-									<input type="submit" value="Update"/>
-									<form:label path="lastName" />
-									<form:input path="lastName" />
-								<form:errors path="lastName" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> ${customer.lastName}</td><td> <a href="adminUpdate.do?update=-5">Update</a></td> </c:otherwise>
-					</c:choose>
-			</tr>
-			<tr>
-				<td>Age:</td>
-					<c:choose>
-						<c:when test="${ update == 6}">
-							<td>
-								<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-								<form:form action="adminUpdate.do?update=6" method="POST" modelAttribute="customer">
-									<input type="submit" value="Update"/>
-									<form:label path="age" />
-									<form:input path="age" />
-									<form:errors path="age" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> ${customer.age}</td><td> <a href="adminUpdate.do?update=-6">Update</a></td> </c:otherwise>
-					</c:choose>
-			</tr>
-			<tr>
-				<td>Height:</td>
-					<c:choose>
-						<c:when test="${ update == 7}">
-						<td>									
-							<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-							<form:form action="adminUpdate.do?update=7" method="POST" modelAttribute="customer">
-								<input type="submit" value="Update"/>
-								<form:label path="height" />
-								<form:input path="height" />
-								<form:errors path="height" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> ${customer.height}</td><td> <a href="adminUpdate.do?update=-7">Update</a></td> </c:otherwise>
-					</c:choose>				
-			</tr>
-			<tr>
-				<td>Weight:</td>
-					<c:choose>
-						<c:when test="${ update == 8}">
-						<td>
-							<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-							<form:form action="adminUpdate.do?update=8" method="POST" modelAttribute="customer">
-								<input type="submit" value="Update"/>
-								<form:label path="weight" />
-								<form:input path="weight" />
-								<form:errors path="weight" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> ${customer.weight}</td><td> <a href="adminUpdate.do?update=-8">Update</a></td> </c:otherwise>
-					</c:choose>				
-			</tr>
-			<tr>
-				<td>Zip code:</td>
-					<c:choose>
-						<c:when test="${ update == 9}">
-						<td>
-							<form action="adminProfile.jsp" method="GET"><input type="submit" value="Cancel"></form>
-							<form:form action="adminUpdate.do?update=9" method="POST" modelAttribute="customer">
-								<input type="submit" value="Update"/>
-								<form:label path="zipcode" />
-								<form:input path="zipcode" />
-								<form:errors path="zipcode" />
-							</form:form></td>
-						</c:when>
-						<c:otherwise><td> ${customer.zipcode}</td><td> <a href="adminUpdate.do?update=-9">Update</a></td> </c:otherwise>
-					</c:choose>
-			</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<th >Access Level:
-						${customer.accessLevel}
-					</th>
-			</tr>
-			<tr>
-   					<th><a href="admin.do?">Account Management</a></th>
-			</tr>
-			</tfoot>
-		</table>
+									</div>
+								</div>
+								</form:form>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>${customer.email}</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<a href="update.do?update=-1">Update</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
 
-			<form action="shop.do" method="POST"><input type="submit" value="Shop"></form>
-			<form action="logout.do" method="POST"><input type="submit" value="logout"></form>
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Password:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 2}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=2" method="POST"
+										modelAttribute="customer">
+										<form:label path="password" />
+										<form:input path="password" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>**************</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-2">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
 
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>First Name:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 3}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=3" method="POST"
+										modelAttribute="customer">
+										<form:label path="firstName" />
+										<form:input path="firstName" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>${customer.firstName}</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-3">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Middle Name:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 4}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=4" method="POST"
+										modelAttribute="customer">
+										<form:label path="middleName" />
+										<form:input path="middleName" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>${customer.middleName}</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-4">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Last Name:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 5}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=5" method="POST"
+										modelAttribute="customer">
+										<form:label path="lastName" />
+										<form:input path="lastName" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>${customer.lastName}</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-5">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Age:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 6}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=6" method="POST"
+										modelAttribute="customer">
+										<form:label path="age" />
+										<form:input path="age" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>
+										<fmt:formatNumber value="${customer.age}" type="number" />
+									</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-6">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Height:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 7}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=7" method="POST"
+										modelAttribute="customer">
+										<form:label path="height" />
+										<form:input path="height" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>${customer.height}</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-7">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Weight:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ update == 8}">
+								<div class="side-by-side" style="text-align: right">
+									<form:form action="update.do?update=8" method="POST"
+										modelAttribute="customer">
+										<form:label path="weight" />
+										<form:input path="weight" />
+								</div>
+								<div class="side-by-side"
+									style="width: 70px; padding-left: 15px">
+									<div>
+										<input type="submit" value="Update" />
+										</form:form>
+									</div>
+								</div>
+								<div class="side-by-side">
+									<div>
+										<form action="update.do" method="GET">
+											<input type="submit" value="Cancel">
+										</form>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<div>${customer.weight}</div>
+								</div>
+								<div class="side-by-side" style="text-align: right; width:100px">
+									<div>
+										<a href="update.do?update=-8">Update</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+
+					<div class="wrapper list-group-item">
+						<div class="side-by-side" style="width: 80px">
+							<div>Access Level:</div>
+						</div>
+						<c:choose>
+							<c:when test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
+								<div class="side-by-side" style="text-align: right; width:200px">
+									<a href="admin.do?">${sessionScope.customer.accessLevel}</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="side-by-side" style="text-align: right; width:200px">
+									${sessionScope.customer.accessLevel}</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+				<div class="wrapper">
+					<div class="side-by-side" style="width: 70px">
+						<form action="logout.do" method="POST">
+							<input type="submit" value="Logout">
+						</form>
+					</div>
+					<div class="side-by-side" style="width: 59px">
+						<form action="LandingPage.do" method="GET">
+							<input type="submit" value="Shop">
+						</form>
+					</div>
+					<c:if test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
+						<div class="side-by-side" style="width: 129px">
+							<form action="admin.do" method="POST">
+								<input type="submit" value="Modify Inventory">
+							</form>
+						</div>
+						<div class="side-by-side" style="width: 130px">
+							<form action="admin.do" method="POST">
+								<input type="submit" value="Modify Users">
+							</form>
+						</div>
+					</c:if>
+				</div>
+			</div>
+			<div class="col-sm-6 col-lg-6 col-md-6"></div>
+		</div>
+	</div>
 </body>
 </html>

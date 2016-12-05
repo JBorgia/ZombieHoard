@@ -51,11 +51,15 @@
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
 					<c:choose>
-						<c:when test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
+						<c:when
+							test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
 							<li><a href="refresh.do">Login</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="profile.jsp">My Account</a></li>
+							<li><a href="profile.jsp">My Account <c:if
+										test="${cart.totalCost>0}"> (<fmt:formatNumber
+											value="${cart.totalCost}" type="currency" />)</c:if>
+							</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li><a href="ViewCart.do">View Cart</a></li>

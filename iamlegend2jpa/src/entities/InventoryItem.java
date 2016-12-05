@@ -2,8 +2,10 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +39,7 @@ public class InventoryItem {
 	private Optic optic;
 	@OneToOne(mappedBy = "item")
 	private Weapon weapon;
-	@OneToMany(mappedBy="inventoryItem")
+	@OneToMany(mappedBy="inventoryItem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CartItems> cartItems;
 //	@ManyToMany(mappedBy = "inventoryItems", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 //	List<Cart> carts;

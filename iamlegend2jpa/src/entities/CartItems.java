@@ -2,15 +2,18 @@ package entities;
 
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="cart_items")
 public class CartItems {
 	// +-------------------+---------+------+-----+---------+----------------+
 	// | Field | Type | Null | Key | Default | Extra |
@@ -24,34 +27,23 @@ public class CartItems {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne
-	@JoinColumn(name = "inventory_items_id")
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "inventory_item_id")
 	private InventoryItem inventoryItem;
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
 	private Integer quantity = 0;
-	private Double itemsWeight;
+	
 
 	public Double getItemsWeight() {
-		calcItemsWeight();
-		return this.itemsWeight;
-	}
-
-	public void calcItemsWeight() {
-		this.itemsWeight = this.getInventoryItem().getWeight() * this.getQuantity();
+		return this.getInventoryItem().getWeight() * this.getQuantity();
 	}
 
 	public Double getItemsCost() {
-		calcItemsCost();
-		return itemsCost;
+		return this.getInventoryItem().getPrice() * this.getQuantity();
 	}
 
-	public void calcItemsCost() {
-		this.itemsCost = this.getInventoryItem().getPrice() * this.getQuantity();
-	}
-
-	private Double itemsCost;
 
 	public Integer getQuantity() {
 		return quantity;
@@ -72,8 +64,8 @@ public class CartItems {
 
 	@Override
 	public String toString() {
-		return "CartItems [id=" + id + ", inventoryItem=" + inventoryItem + ", cart=" + cart + ", quantity=" + quantity
-				+ ", itemsWeight=" + itemsWeight + ", itemsCost=" + itemsCost + "]";
+		return "CartItems [id=" + id + ", inventoryItem=" + inventoryItem.getId() + ", cart=" + cart.getId() + ", quantity=" + quantity
+				+ "]";
 	}
 
 	public InventoryItem getInventoryItem() {

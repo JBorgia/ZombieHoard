@@ -32,7 +32,7 @@ public class Cart {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_account_number")
 	private Customer customer;
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CartItems> cartItems;
 	// @ManyToMany
 	// @JoinTable(name = "cart_items", joinColumns = @JoinColumn(name =
@@ -58,6 +58,7 @@ public class Cart {
 	public List<CartItems> getCartItems() {
 		return cartItems;
 	}
+
 
 	public void setCartItems(List<CartItems> cartItems) {
 		this.cartItems = cartItems;
@@ -112,7 +113,7 @@ public class Cart {
 			cartItem.setQuantity(1);
 			cartItems.add(cartItem);
 		}
-		System.out.println(cartItem);
+		System.out.println("**********************************************************************" + cartItem);
 		this.calcTotalCost();
 		this.calcTotalWeight();
 	}

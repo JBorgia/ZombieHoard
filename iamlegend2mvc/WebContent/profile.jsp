@@ -56,7 +56,10 @@
 							<li><a href="refresh.do">Login</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="profile.jsp">My Account</a></li>
+							<li><a href="profile.jsp">My Account <c:if
+										test="${cart.totalCost>0}"> (<fmt:formatNumber
+											value="${cart.totalCost}" type="currency" />)</c:if>
+							</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li><a href="ViewCart.do">View Cart</a></li>
@@ -130,10 +133,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>${sessionScope.customer.email}</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<a href="update.do?update=-1">Update</a>
 								</div>
 							</c:otherwise>
@@ -168,10 +171,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>**************</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-2">Update</a>
 									</div>
@@ -210,10 +213,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>${sessionScope.customer.firstName}</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-3">Update</a>
 									</div>
@@ -251,10 +254,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>${sessionScope.customer.middleName}</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-4">Update</a>
 									</div>
@@ -293,10 +296,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>${sessionScope.customer.lastName}</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-5">Update</a>
 									</div>
@@ -335,13 +338,13 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>
 										<fmt:formatNumber value="${sessionScope.customer.age}"
 											type="number" />
 									</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-6">Update</a>
 									</div>
@@ -380,10 +383,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>${sessionScope.customer.height}</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-7">Update</a>
 									</div>
@@ -422,10 +425,10 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<div>${sessionScope.customer.weight}</div>
 								</div>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:100px">
 									<div>
 										<a href="update.do?update=-8">Update</a>
 									</div>
@@ -442,12 +445,12 @@
 						</div>
 						<c:choose>
 							<c:when test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									<a href="admin.do?">${sessionScope.customer.accessLevel}</a>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="side-by-side" style="text-align: right">
+								<div class="side-by-side" style="text-align: right; width:200px">
 									${sessionScope.customer.accessLevel}</div>
 							</c:otherwise>
 						</c:choose>
@@ -455,7 +458,7 @@
 				</div>
 				<div class="wrapper">
 					<div class="side-by-side" style="width: 70px">
-						<form action="logout.do" method="POST">
+						<form action="logout.do" method="GET">
 							<input type="submit" value="Logout">
 						</form>
 					</div>
@@ -466,12 +469,12 @@
 					</div>
 					<c:if test="${ sessionScope.customer.accessLevel == 'ADMIN'}">
 						<div class="side-by-side" style="width: 129px">
-							<form action="logout.do" method="POST">
+							<form action="admin.do" method="POST">
 								<input type="submit" value="Modify Inventory">
 							</form>
 						</div>
 						<div class="side-by-side" style="width: 130px">
-							<form action="logout.do" method="POST">
+							<form action="admin.do" method="POST">
 								<input type="submit" value="Modify Users">
 							</form>
 						</div>

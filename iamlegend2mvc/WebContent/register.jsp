@@ -66,8 +66,8 @@
 						<br />
 						<form:label path="accountBalance"></form:label>
 						<form:input path="accountBalance" type="hidden" value="1000" />
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="email" class="control-label col-xs-offset-0">Email:</form:label>
@@ -77,16 +77,13 @@
 									style="text-align: right; width: 175px">
 									<form:input size="30" path="email" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
+								<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="email" />
-									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="password"
@@ -98,16 +95,13 @@
 									<form:input size="30" path="password"
 										placeholder="6-12 alpha numeric charaters" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
+								<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="password" />
-									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="firstName"
@@ -118,16 +112,13 @@
 									style="text-align: right; width: 175px">
 									<form:input size="30" path="firstName" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
+								<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="firstName" />
-									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="middleName"
@@ -138,16 +129,13 @@
 									style="text-align: right; width: 175px">
 									<form:input size="30" path="middleName" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
+								<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="middleName" />
-									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="lastName"
@@ -158,16 +146,13 @@
 									style="text-align: right; width: 175px">
 									<form:input size="30" path="lastName" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
+								<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="lastName" />
-									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="age" class="control-label col-xs-offset-0">Age:</form:label>
@@ -178,16 +163,13 @@
 									<form:input size="30" path="age"
 										placeholder="Must be 18 or older to register" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
+								<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="age" />
-									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="height"
@@ -198,16 +180,13 @@
 									style="text-align: right; width: 175px">
 									<form:input size="30" path="height" placeholder="Enter inches" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
-										<form:errors path="height" />
-									</div>
+								<div style="text-align: right; font-size: .8em; color: red">
+									<form:errors path="height" />
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="weight"
@@ -218,16 +197,15 @@
 									style="text-align: right; width: 175px">
 									<form:input size="30" path="weight" placeholder="Enter pounds" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
+								<div>
 									<div style="text-align: right; font-size: .8em; color: red">
 										<form:errors path="weight" />
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group" style="height: 50px">
-							<div class="wrapper" style="width: 350px">
+						<div class="form-group">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 100px">
 									<div>
 										<form:label path="zipcode"
@@ -239,11 +217,8 @@
 									<form:input size="30" path="zipcode"
 										placeholder="Enter five or nine digits for zipcode" />
 								</div>
-								<div class="side-by-side"
-									style="text-align: right; width: 245px">
-									<div style="text-align: right; font-size: .8em; color: red">
-										<form:errors path="zipcode" />
-									</div>
+								<div style="text-align: right; font-size: .8em; color: red">
+									<form:errors path="zipcode" />
 								</div>
 							</div>
 						</div>
@@ -255,7 +230,7 @@
 							value="GUEST" />
 						<form:errors path="accessLevel" />
 						<div class="form-group" style="height: 50px; margin: 10px">
-							<div class="wrapper" style="width: 350px">
+							<div class="wrapper" style="width: 350px; height: 50px">
 								<div class="side-by-side" style="width: 80px">
 									<div>
 										<input type="submit" value="Register" class="btn btn-default" />

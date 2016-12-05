@@ -55,7 +55,10 @@
 							<li><a href="refresh.do">Login</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="profile.jsp">My Account</a></li>
+							<li><a href="profile.jsp">My Account <c:if
+										test="${cart.totalCost>0}"> (<fmt:formatNumber
+											value="${cart.totalCost}" type="currency" />)</c:if>
+							</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li><a href="ViewCart.do">View Cart</a></li>

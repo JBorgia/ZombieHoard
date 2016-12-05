@@ -27,6 +27,14 @@ public class Customer extends User {
 	@Id
 	@Column(name = "id")
 	private Integer accountNumber;
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+
 	@Column(name = "account_balance")
 	private Float accountBalance;
 //	@Pattern(regexp="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$", message="Pattern.customer.email")
@@ -47,7 +55,7 @@ public class Customer extends User {
 	@DecimalMin("56")
 	@DecimalMax("100")
 	private Float height;
-	@DecimalMin("85")
+	@DecimalMin("50")
 	@DecimalMax("700")
 	private Float weight;
 	private Integer zipcode;

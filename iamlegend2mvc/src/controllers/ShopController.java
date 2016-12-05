@@ -14,10 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.ZombieDAO;
 import entities.Cart;
+import entities.Customer;
 import entities.InventoryItem;
 
 @Controller
-@SessionAttributes({ "cart" })
+@SessionAttributes({ "cart", "customer" })
 public class ShopController {
 	@Autowired
 	private ZombieDAO zombieDAO;
@@ -49,6 +50,16 @@ public class ShopController {
 		mv.addObject("inventoryItems", zombieDAO.getInvetoryItemsBySearch(weapons));
 		mv.addObject("inventoryItem", new InventoryItem());
 		mv.setViewName("result.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "logoutShop.do")
+	public ModelAndView logout() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("customer", new Customer());
+		mv.addObject("inventoryItems", zombieDAO.getRandomItems());
+		mv.addObject("inventoryItem", new InventoryItem());
+		mv.setViewName("index.jsp");
 		return mv;
 	}
 
@@ -125,6 +136,7 @@ public class ShopController {
 		ModelAndView mv = new ModelAndView();
 		InventoryItem addedItem = zombieDAO.getInventoryItemById(id);
 		mv.addObject("confirmation", zombieDAO.addItemToCart(addedItem, quantity));
+		
 		mv.addObject("inventoryItem", addedItem);
 		InventoryItem cat = new InventoryItem();
 		cat.setCategory(addedItem.getCategory());
@@ -139,7 +151,7 @@ public class ShopController {
 		return mv;
 	}
 
-	@RequestMapping(path = "ViewCart.do", method = RequestMethod.GET)
+	@RequestMapping(path = "ViewCart.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView viewCart() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("inventoryItem", new InventoryItem());
@@ -188,6 +200,8 @@ public class ShopController {
 	public ModelAndView checkOutPage() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("inventoryItem", zombieDAO.fetchCart());
+		zombieDAO.getCart().setActive(false);
+		zombieDAO.setCart(new Cart());
 		mv.setViewName("checkOut.jsp");
 		return mv;
 	}

@@ -52,7 +52,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
 					<c:choose>
-						<c:when test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
+						<c:when
+							test="${empty sessionScope.customer || sessionScope.customer.accessLevel =='GUEST'}">
 							<li><a href="refresh.do">Login</a></li>
 						</c:when>
 						<c:otherwise>
@@ -119,20 +120,9 @@
 								</div>
 								<div class="col-sm-4 col-lg-4 col-md-4">
 									<div style="margin-top: 8px">
-										<span class="right-align"> <form:form method="POST"
-												action="UpdateQuantity.do" modelAttribute="cartItem">
-												Quantity: 
-												<input style="width: 40px; height: 25px"
-													value="${cartItem.quantity}" type="number" name="quantity" />
-												<input value="${cartLoop.index}" type="hidden" name="id" />
-												<input style="width: 70px" type="submit" value="Update" />
-											</form:form>
-										</span> <br> <br> <span class="right-align"> <form:form
-												method="POST" action="DeleteItem.do">
-												<input value="${cartLoop.index}" type="hidden" name="id" />
-												<input style="width: 70px" type="submit" value="Delete" />
-											</form:form>
-										</span>
+										<span class="right-align"> Quantity:
+											<div>${cartItem.quantity}</div>
+										</span> <br> <br> <span class="right-align"> </span>
 									</div>
 								</div>
 							</div>
@@ -165,12 +155,7 @@
 											<input style="width: 150px" type="submit"
 												value="Continue Shopping" />
 										</form:form>
-									</span> <br> <br> <span class="right-align"> <form:form
-											method="GET" action="DeleteItem.do">
-											<input style="width: 150px" type="submit"
-												value="Proceed to Checkout" />
-										</form:form>
-									</span>
+									</span> <br> <br> <span class="right-align"> </span>
 								</div>
 							</div>
 						</div>
@@ -178,65 +163,7 @@
 
 				</c:if>
 
-				<div class="row carousel-holder">
-					<div class="col-md-12">
-						<div id="carousel-example-generic" class="carousel slide"
-							data-ride="carousel">
-							<div class="carousel-inner">
 
-								<div class="item active">
-									<div class="row">
-
-										<c:forEach items="${inventoryItems}" var="item"
-											varStatus="itemLoop">
-											<form:form method="GET" action="GetItemInfo.do"
-												modelAttribute="inventoryItem">
-												<a href="GetItemInfo.do?id=${item.id}"> <input name="id"
-													type="hidden" value="${item.id}" />
-													<div class="col-sm-4 col-lg-4 col-md-4">
-														<div class="thumbnail">
-															<div class="image-box">
-																<img src="${item.imageUrl}" alt="">
-															</div>
-															<div class="caption">
-																<h4>${item.name}</h4>
-																<div style="float: left">
-																	<h5>
-																		<fmt:formatNumber value="${item.price}"
-																			type="currency" />
-																	</h5>
-																</div>
-																<div style="float: right">
-																	<h5>
-																		<fmt:formatNumber value="${item.weight}"
-																			maxIntegerDigits="3" type="number" />
-																		lbs.
-																	</h5>
-																</div>
-															</div>
-														</div>
-													</div></a>
-											</form:form>
-											<c:if test="${(itemLoop.index+1) % 3 == 0}">
-									</div>
-								</div>
-								<div class="item">
-									<div class="row">
-										</c:if>
-										</c:forEach>
-									</div>
-								</div>
-							</div>
-							<div class="center-nav">
-								<a href="#carousel-example-generic" data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left"></span>
-								</a> <a href="#carousel-example-generic" data-slide="next"> <span
-									class="glyphicon glyphicon-chevron-right"></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

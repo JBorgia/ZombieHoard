@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import entities.Cart;
+import entities.Customer;
 import entities.InventoryItem;
 
 public interface ZombieDAO {
@@ -13,5 +14,9 @@ public interface ZombieDAO {
 	public Cart fetchCart();
 	public void updateItemQuantity(int id, int quantity);
 	public void removeFromCart(int id);
-	public void persistCart();
+	public void persistCart(Cart cart);
+	public Cart fetchLastActiveCart(Customer customer);
+	public Cart getCart();
+	public void mergeCart();
+	public void setCart(Cart cart);
 }
